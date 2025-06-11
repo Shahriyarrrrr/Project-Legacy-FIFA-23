@@ -1,0 +1,1047 @@
+{
+	"name":"womenWorldCupMainMenuFlow"
+	,"initial":
+	{
+		"targets": [ "CheckSquads" ]
+	},
+	"let":{"setCMbackground":"false"
+		  ,"isWorldCupFlow":true
+		  ,"isWomenWorldCupFlow":true},
+	"onEnter":
+	[
+		["loadViewModel", ["WorldCupViewModel"]]
+		,["sendAction",["updateLocGender", "femaleGender"]]
+		,["sendAction", ["pushTheme", "WOMEN_WORLDCUP"]]
+		,["sendAction", ["setConnectedCompetition", ".NavConnectedCompetitionType.WOMEN_WORLDCUP22"]]
+		,["sendScreenEvent", ["UnregisterThemeUpdate",""]]
+	],
+	"onExit":
+	[
+		["sendAction", ["setConnectedCompetition", ".NavConnectedCompetitionType.NOTCONNECTED"]]
+		,["sendAction", ["popTheme"]]
+		,["unloadViewModel", ["WorldCupViewModel"]]
+		,["sendScreenEvent", ["RegisterThemeUpdate",""]]
+	],
+	"states":
+	[
+		{
+			"name":"CheckSquads"
+			,"transitions":
+			[
+				{"event":"evt_sl_operation_complete", "targets":["CheckForceSkipVideo"]}
+			]
+		}
+		,{
+			"name":"CheckForceSkipVideo"
+			,"onEnter":
+			[
+				["sendAction",["condition", "ForceSkipVideo"]]
+			]
+			,"transitions":
+			[
+				{"event":"true", "targets":["ProceedUXSaveGMTrackerInfo"]}
+				,{"event":"false","targets":["WorldCupCheckIntroVideo"]}
+			]
+		}
+		,{
+			"name":"WorldCupCheckIntroVideo"
+			,"onEnter":
+			[
+				["sendAction",["condition", "PlayWorldCupIntroVideoCheck"]]
+			]
+			,"transitions":
+			[
+				{"event":"true", "targets":["WorldCupPlayOTVideo"]}
+				,{"event":"false","targets":["WorldCupPlayIntroVideo"]}
+			]
+		}
+		,{
+			"name":"WorldCupPlayOTVideo"
+			,"onEnter":
+			[
+				["sendAction", ["notify", "DisableEALayer"]]
+				,["sendAction", ["StopMenuMusic"]]
+				,["sendAction", ["fbStartFlowEvent", "gmIntroWomenWorldCupOTVideo"]]
+			]			
+			,"onExit":
+			[
+				["sendAction", ["notify", "EnableEALayer"]]
+				,["sendAction", ["StartMenuMusic"]]
+			]
+			,"transitions":
+			[
+				{"event":"videoStopped","targets":["ProceedUXSaveGMTrackerInfo"]}
+			]
+		}
+		,{
+			"name":"WorldCupPlayIntroVideo"
+			,"onEnter":
+			[
+				["sendAction", ["notify", "DisableEALayer"]]
+				,["sendAction", ["StopMenuMusic"]]
+				,["sendAction", ["fbStartFlowEvent", "gmIntroWomenWorldCupVideo"]]
+			]
+			,"onExit":
+			[
+				["sendAction", ["notify", "EnableEALayer"]]
+				,["sendAction", ["StartMenuMusic"]]
+			]
+			,"transitions":
+			[
+				{"event":"videoStopped","targets":["ProceedUXSaveGMTrackerInfo"]}
+			]
+		}
+		,{
+			"name":"WorldCupDatabaseUpdate"
+			,"onEnter":
+			[
+				["sendScreenEvent", ["ShowLoadingIcon",""]]
+			]
+			,"onExit":
+			[
+				["sendScreenEvent", ["HideLoadingIcon",""]]
+			]
+			,"states":
+			[
+				{
+					"name":"WorldCupDatabaseCheckForUpdates"
+					,"onEnter":
+					[
+						["loadView", ["popup", "World_Cup_DB", "checking_customdatafile"]] /* HAL: Checking for latest updates... */
+						,["sendAction", ["condition", "WorldCupDatabaseCheckForUpdates"]]
+					]
+					,"onExit":
+					[
+						["unloadView", ["popup", "World_Cup_DB"]]
+					]
+					,"transitions":
+					[
+						{
+							"event":"WorldCupDatabaseUpToDate"
+							,"targets":["ProceedUXSaveGMTrackerInfo"]
+						}
+						,{
+							"event":"WorldCupDatabaseHaveUpdates"
+							,"targets":["WorldCupDatabaseDownloadUpdates"]
+						}
+					]
+				}
+				,{
+					"name":"WorldCupDatabaseDownloadUpdates"
+					,"onEnter":
+					[
+						["loadView", ["popup", "World_Cup_DB", "OSDK_A_R27"]] /* HAL: Downloading Updates... */
+						,["sendAction", ["condition", "WorldCupDatabaseDownloadUpdates"]]
+					]
+					,"onExit":
+					[
+						["unloadView", ["popup", "World_Cup_DB"]]
+					]
+					,"transitions":
+					[
+						{
+							"event":"evt_sl_operation_complete"
+							,"targets":["ProceedUXSaveGMTrackerInfo"]
+						}
+					]
+				}
+			]
+		}
+		,{
+			"name":"ProceedUXSaveGMTrackerInfo", /* UXSaveGMTrackerInfo fires ACTION_ADVANCE at _UXProfileSaveDone */
+			"onEnter":
+			[
+				["sendScreenEvent", ["UXSaveGMTrackerInfo", ".GameModeRecordID.GM_WOMEN_WORLDCUP_GENERAL"]]
+			]
+			,"transitions":
+			[
+				{"event": "advance", "targets": ["SelectFavoriteNationalTeam"]} /*Please change it back to ConnectedCompetitionInitialize for Online Friendlies if needed*/
+			]
+		}
+		,{
+			"name":"ConnectedCompetitionInitialize",
+			"onEnter":
+			[
+				["sendAction", ["getConnectedCompetition"]]
+			]
+			,"transitions":
+			[
+				{"event": "getConnectedCompetitionHandled", "targets": ["SelectFavoriteNationalTeam"]}
+			]
+		}
+		,{
+			"onEnter":
+			[
+				["loadViewModel", ["SelectFavoriteNationalTeamViewModel", "false"]] /* whether the screen is required (true) or could <advance> if team was already set (false) */
+				,["loadView", ["screen", "game/screens/fluxHub/FluxHub", "", ".direction"]]
+			]
+			,"onExit":
+			[
+				["unloadView", ["screen", "game/screens/fluxHub/FluxHub"]]
+				,["unloadViewModel", ["SelectFavoriteNationalTeamViewModel"]]
+			]
+			,"states":
+			[
+				{
+					"name": "SelectFavoriteNationalTeam"
+					,"transitions":
+					[
+						{"event": "back", "targets": ["BackToMainMenu"]}
+						,{"event": "advance", "targets": ["WorldCupMainMenu"]}
+						,{"event": "advanceWithSave", "targets": ["SelectFavoriteNationalTeamSave"]}
+					]
+				}
+				,{
+					"name": "SelectFavoriteNationalTeamSave"
+					,"onEnter":
+					[
+						["sendScreenEvent", ["UXSaveProfile"]]
+						,["sendScreenEvent", ["ShowBusyIndicator"]]
+					]
+					,"onExit":
+					[
+						["sendScreenEvent", ["HideBusyIndicator"]]
+					]
+					,"transitions":
+					[
+						/* Sent back by UXSaveProfile. */
+						{"event": "back", "targets": ["WorldCupMainMenu"]}
+					]
+				}
+			]
+		}
+		,{
+			"name":"EditFavoriteNationalTeamFlow"
+			,"onEnter":
+			[
+				["loadViewModel", ["SelectFavoriteNationalTeamViewModel", "true"]] /* whether the screen is required (true) or could <advance> if team was already set (false) */
+				,["loadView", ["screen", "game/screens/fluxHub/FluxHub", "", ".direction"]]
+			]
+			,"onExit":
+			[
+				["unloadView", ["screen", "game/screens/fluxHub/FluxHub"]]
+				,["unloadViewModel", ["SelectFavoriteNationalTeamViewModel"]]
+			]
+			,"states":
+			[
+				{
+					"name": "EditFavoriteNationalTeam"
+					,"transitions":
+					[
+						{"event": "back", "targets": ["WorldCupMainMenu"]}
+						,{"event": "advanceWithSave", "targets": ["EditFavoriteNationalTeamSave"]}
+					]
+				}
+				,{
+					"name": "EditFavoriteNationalTeamSave"
+					,"onEnter":
+					[
+						["sendScreenEvent", ["UXSaveProfile"]]
+						,["sendScreenEvent", ["ShowBusyIndicator"]]
+					]
+					,"onExit":
+					[
+						["sendScreenEvent", ["HideBusyIndicator"]]
+					]
+					,"transitions":
+					[
+						/* Sent back by UXSaveProfile. */
+						{"event": "back", "targets": ["WorldCupMainMenu"]}
+					]
+				}
+			]
+		}
+		,{
+			"name":"WorldCupMainMenu"
+			,"onEnter":
+			[
+				["loadViewModel", ["WomenWorldCupMainHubViewModel"]]				
+				,["sendAction", ["notify", "applyWorldCupTheme"]]
+				,["loadView", ["screen", "game/screens/fluxHub/FluxHub", "", ".direction"]]
+				,["sendAction", ["evt_hub_update_event", ".NavFIFAHubBackgroundType.WOMEN_WORLDCUP_BACKGROUND_HUB"]]
+			]
+			,"onExit":
+			[
+				["unloadView", ["screen", "game/screens/fluxHub/FluxHub"]]
+				,["unloadViewModel", ["WomenWorldCupMainHubViewModel"]]
+				,["sendAction", ["evt_hub_update_event", ".NavFIFAHubBackgroundType.WOMEN_WORLDCUP_BACKGROUND_GENERIC"]]
+			]
+			,"states":
+			[
+				{
+					"name":"MainMenuStates"
+					,"transitions":
+					[				
+						{"event": "back", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "backInviteFlow", "targets": ["preInviteFlowCheck"]}
+						,{"event": "backSignOutFlow", "targets": ["profileSignOutWait"]}
+						,{"event": "WorldCupQuickPlay", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "WorldCupOnlineTournament", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "ConnectedKickOff", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "NewWomenWorldCupTournament", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "LoadWomenWorldCupTournament", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "ContinueWomenWorldCupTournament", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "NewWomenWorldCupTournamentAsPlayer", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "LoadWomenWorldCupTournamentAsPlayer", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "ContinueWomenWorldCupTournamentAsPlayer", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "LoadConnectedTournament", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "ContinueConnectedTournament", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "WomenWorldCupFavoriteClub", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "ShowFifaAcademyHub", "targets":["MainMenuAvatarOutro"], "let":{ "TargetEvent":".event.name" } }
+						,{"event": "evt_set_lead_profile", "targets":["SetLeadProfile"]}
+					]
+					,"states":
+					[
+						{
+							"name":"idleOnMenu"
+							,"onEnter":
+							[
+								["sendAction", ["DisconnectCheck"] ]
+								,["loadView", ["screen", "game/screens/fluxHub/FluxHub", "", ".direction"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["screen", "game/screens/fluxHub/FluxHub"]]
+							]
+							,"transitions":
+							[
+								{"event":"OnCrossPlayEnabled","targets":["crossPlayEnabledPopup"]}
+								,{"event":"OnCrossPlayDisabled","targets":["crossPlayDisabledPopup"]}
+								,{"event":"OnCrossPlayRequestSent", "targets":["crossPlayRequestSentPopup"]}
+								,{"event":"OnCrossPlayFriendDeleted", "targets":["crossPlayFriendDeletedPopup"]}
+								,{"event":"OnCrossPlayRequestDeclined", "targets":["crossPlayRequestDeclinedPopup"]}
+								,{"event":"OnCrossPlayFriendAdded", "targets":["crossPlayFriendAddedPopup"]}
+								,{"event":"OnCrossPlayErrorEvent", "targets":["crossPlayErrorPopup"]}
+								,{"event":"EditTeamManagement", "targets":["editTeamManagementFlow"]}
+								,{"event":"Credits", "targets":["credits"]}
+								,{"event":"EATrax", "targets":["eaTrax"]}
+								,{"event":"HelpBasic", "targets":["HelpBasic"]}
+								,{"event":"HelpSkillMoves", "targets":["HelpSkillMoves"]}
+								,{"event":"HelpCelebrations", "targets":["HelpCelebrations"]}
+								,{"event":"SettingsVideoBrightness", "targets":["SettingsVideoBrightness"]}
+								,{"event":"SettingsAccessibility", "targets":["SettingsGameInitialCategoryPreset"], "let":{ "SettingsContext":"FROM_MAIN_MENU", "InitialSettingCategory":"ACCESSIBILITY" }}
+								,{"event":"SettingsGame", "targets":["SettingsGame"], "let":{ "SettingsContext":"FROM_MAIN_MENU" }}
+								,{"event":"SettingsController", "targets":["SettingsController"]}
+								,{"event":"matchmakingOptions", "targets":["preMatchmakingOptions"]}
+							]
+						}
+						,{
+							"name":"MainMenuAvatarOutro"
+							,"onEnter":
+							[
+								["set", ["TargetEvent", ".TargetEvent"]]
+								,["sendAction", ["exitMainMenuHub"]]
+								,["loadViewModel", ["CountdownTimerViewModel", "5000|PlayAvatarOutroEnded"]]	/*avoids game hang if something goes wrong*/
+							]
+							,"onExit":
+							[
+								["unloadViewModel", ["CountdownTimerViewModel"]]
+							]
+							,"transitions":
+							[
+								{ "event": "PlayAvatarOutroEnded","actions":[ ["invoke", [".TargetEvent"]], ["sendAction",["notify", "DestroyAvatar"]] ] }
+								
+								,{"event": "back", "targets": ["onBackToMenu"]}
+								,{"event": "WorldCupQuickPlay", "targets": ["OnlineQuickPlayMode"]}
+								,{"event": "WorldCupOnlineTournament", "targets": ["WorldCupOnlineTournamentFlow"]}
+								,{"event": "ConnectedKickOff", "targets": ["connectedKickOffStageLoad"]}
+								,{"event": "NewWomenWorldCupTournament", "targets": ["newWomenWorldCupTournamentModeFlow"]}
+								,{"event": "LoadWomenWorldCupTournament", "targets": ["loadWomenWorldCupTournamentModeFlow"]}
+								,{"event": "ContinueWomenWorldCupTournament", "targets": ["continueWomenWorldCupTournamentModeFlow"]}
+								,{"event": "NewWomenWorldCupTournamentAsPlayer", "targets": ["newWomenWorldCupTournamentAsPlayerModeFlow"]}
+								,{"event": "LoadWomenWorldCupTournamentAsPlayer", "targets": ["loadWomenWorldCupTournamentAsPlayerModeFlow"]}
+								,{"event": "ContinueWomenWorldCupTournamentAsPlayer", "targets": ["continueWomenWorldCupTournamentAsPlayerModeFlow"]}
+								,{"event": "LoadConnectedTournament", "targets": ["loadConnectedTournamentModeFlow"]}
+								,{"event": "ContinueConnectedTournament", "targets": ["continueConnectedTournamentModeFlow"]}
+								,{"event": "WomenWorldCupFavoriteClub", "targets": ["EditFavoriteNationalTeamFlow"]}
+								,{"event": "ShowFifaAcademyHub", "targets":["FifaAcademyHub"]}
+							]
+						}
+						,{
+							"name":"onBackToMenu"
+							,"onEnter":
+							[
+								["invoke", ["GoToBackToMenu"]]
+							]
+							,"transitions":
+							[
+								{"event":"GoToBackToMenu","targets":["BackToMainMenu"]}
+							]
+						}
+						,{
+							"name":"crossPlayErrorPopup"
+							,"onEnter":
+							[
+								["loadView", ["popup", "CROSSPLAY_POPUP", "CROSSPLAY_ERROR_OCCURRED|Okay|back"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["popup", "CROSSPLAY_POPUP"]]
+							]
+							,"transitions":
+							[
+								{"event":"back","targets":["idleOnMenu"]}
+							]
+						}
+						,{
+							"name":"crossPlayRequestDeclinedPopup"
+							,"onEnter":
+							[
+								["loadView", ["popup", "CROSSPLAY_POPUP", "CROSSPLAY_FRIEND_DECLINED|Okay|back"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["popup", "CROSSPLAY_POPUP"]]
+							]
+							,"transitions":
+							[
+								{"event":"back","targets":["idleOnMenu"]}
+							]
+						}
+						,{
+							"name":"crossPlayFriendAddedPopup"
+							,"onEnter":
+							[
+								["loadView", ["popup", "CROSSPLAY_POPUP", "CROSSPLAY_FRIEND_ADDED|Okay|back"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["popup", "CROSSPLAY_POPUP"]]
+							]
+							,"transitions":
+							[
+								{"event":"back","targets":["idleOnMenu"]}
+							]
+						}
+						,{
+							"name":"crossPlayFriendDeletedPopup"
+							,"onEnter":
+							[
+								["loadView", ["popup", "CROSSPLAY_POPUP", "CROSSPLAY_FRIEND_DELETED|Okay|back"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["popup", "CROSSPLAY_POPUP"]]
+							]
+							,"transitions":
+							[
+								{"event":"back","targets":["idleOnMenu"]}
+							]
+						}
+						,{
+							"name":"crossPlayRequestSentPopup"
+							,"onEnter":
+							[
+								["loadView", ["popup", "CROSSPLAY_POPUP", "CROSSPLAY_REQUEST_SENT|Okay|back"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["popup", "CROSSPLAY_POPUP"]]
+							]
+							,"transitions":
+							[
+								{"event":"back","targets":["idleOnMenu"]}
+							]
+						}						
+						,{
+							"name":"crossPlayEnabledPopup"
+							,"onEnter":
+							[
+								["loadView", ["popup", "CROSSPLAY_POPUP", "CROSSPLAY_IS_ENABLED|Okay|back"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["popup", "CROSSPLAY_POPUP"]]
+							]
+							,"transitions":
+							[
+								{"event":"back","targets":["idleOnMenu"]}
+							]
+						}
+						,{
+							"name":"crossPlayDisabledPopup"
+							,"onEnter":
+							[
+								["loadView", ["popup", "CROSSPLAY_POPUP", "CROSSPLAY_IS_DISABLED|Okay|back"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["popup", "CROSSPLAY_POPUP"]]
+							]
+							,"transitions":
+							[
+								{"event":"back","targets":["idleOnMenu"]}
+							]
+						}
+					]
+				}
+			]
+		}
+		,{
+			"let":{ "SettingsContext":"FROM_MAIN_MENU"}
+			,"name":"FifaAcademyHubHolder"
+			,"states":
+			[
+				{
+					"name":"FifaAcademyHub"
+					,"type":"external"
+					,"file":"/fifaAcademyFlow.nav"
+					,"outputs":
+					{
+						"back":"WorldCupMainMenu"
+						,"enterMatch":"WorldCupMainMenu"
+						,"enterMatchWithPressConference":"WorldCupMainMenu"
+						,"out_goToInviteFlow":"preInviteFlowCheck"
+						,"profileSignOut":"profileSignOutWait"
+					}
+				}
+			]
+		}
+		,{
+			"name": "connectedKickOffModeFlow" 
+			,"type": "external"
+			,"file": "connectedkickoff.nav"
+			,"inputs":
+			{
+				"connectedKickOffStageLoad":"connectedKickOffStageLoad"
+			}
+			,"outputs":
+			{
+				"BackToMenu": "waitForSquadReload"
+				,"GoToInvite": "waitForSquadReloadToInvite"
+			}
+		}
+		,{
+			"name": "waitForSquadReload"
+			,"onEnter":
+			[
+				["loadViewModel", ["CountdownTimerViewModel", "3000|evt_sl_operation_complete"]] /*avoids game hang if something goes wrong*/
+			]
+			,"onExit":
+			[
+				["unloadViewModel", ["CountdownTimerViewModel"]]
+			]
+			,"transitions":
+			[
+				{"event": "evt_sl_operation_complete", "targets": ["WorldCupMainMenu"]}
+			]
+		}
+		,{
+			"name": "waitForSquadReloadToInvite"
+			,"onEnter":
+			[
+				["loadViewModel", ["CountdownTimerViewModel", "3000|evt_sl_operation_complete"]] /*avoids game hang if something goes wrong*/
+			]
+			,"onExit":
+			[
+				["unloadViewModel", ["CountdownTimerViewModel"]]
+			]
+			,"transitions":
+			[
+				{"event": "evt_sl_operation_complete", "actions": [["invoke", ["goToInviteFlow"]]]}
+			]
+		}
+		,{
+			"name":"ConnectedCompetitionFlow"
+			,"type":"external"
+			,"file":"/worldcup/CQP/connectedCompetitionFlow.nav"
+			,"inputs":
+			{
+				"WorldCupQuickPlayFlow":"preCheckWorldCupQuickPlay"
+				,"BackToKickoffSelectFixture":"preCheckWorldCupQuickPlay_toKickoffSelectFixture"
+				,"BackToOnlineFriendliesSelectFixture":"preCheckWorldCupQuickPlay_toOnlineFriendliesSelectFixture"
+			}
+			,"outputs":
+			{
+				"TournamentFlow":"connectedTournamentFlow"
+				,"FriendliesFlow":"onlineFriendliesFlow"
+				,"KickoffFlow":"cqpKickoffFlow"
+				,"BackToMenu":"WorldCupMainMenu"
+				,"quitToMainMenu":"BackToMainMenu"
+			}
+		}
+		,{
+			"name":"OnlineQuickPlayMode"
+			,"onEnter":
+			[
+				["loadViewModel",["UserValidationViewModel", "ugc=false"]]
+				,["loadViewModel",["OnlineGameplayViewModel"]]
+				,["sendAction", ["notify", "checkUserOnlineRestrictions"]]
+				,["sendAction", ["notify", "startMonitorUserOnlineRestrictions"]]
+				,["sendAction", ["evt_hub_update_event", ".NavFIFAHubBackgroundType.WOMEN_WORLDCUP_BACKGROUND_GENERIC"]]	
+				,["sendScreenEvent", ["UxSetFlowState",".eState.WC_ONLINE_FRIENDLIES"]]
+			]
+			,"onExit":
+			[
+				["sendScreenEvent", ["UxSetFlowState",".eState.ARENA"]]
+				,["unloadViewModel",["OnlineGameplayViewModel"]]
+				,["unloadViewModel",["UserValidationViewModel"]]
+			]
+			,"states":
+			[
+				{
+					"name":"preCheckOnlineQuickPlay"
+					,"type":"external"
+					,"file":"/online/standardPreCheckFlow.nav"
+					,"outputs":
+					{
+						"preCheckSuccess":"OriginCheck"
+						,"preCheckFail":"WorldCupMainMenu"
+					}
+				}
+				,{
+					"name":"OriginCheck"
+					,"type":"external"
+					,"file":"/online/origin.nav"	
+					,"outputs":
+					{
+						"OriginIsOnlineTrue":"OnlineQuickPlayScreen"
+						,"quit":"WorldCupMainMenu"
+					}
+				}	
+				,{
+					"name":"OnlineQuickPlayScreen"
+					,"onEnter":
+					[
+						["loadViewModel",["OnlineQuickPlayViewModel"]]
+						,["loadView", ["screen", "game/screens/fluxHub/FluxHub", "", ".direction"]]
+					]
+					,"onExit":
+					[
+						["unloadView", ["screen", "game/screens/fluxHub/FluxHub"]]
+						,["unloadViewModel",["OnlineQuickPlayViewModel"]]
+					]
+					,"transitions":
+					[
+						{"event": "advanceFriendlies", "targets": ["onlineQuickPlayPrePlay"]}
+						,{"event": "advance", "actions": [["sendAction", ["notify", "openFriendList"] ]]}
+						,{"event": "back", "targets": ["WorldCupMainMenu"]}
+						,{"event": "quit", "targets": ["WorldCupMainMenu"]}
+					]
+					,"states":
+					[
+						{
+							"name":"OnlineQuickPlayScreenIdle"
+							,"transitions":
+							[
+								{"event": "OpenGameSettingsOverlay", "targets":["OnlineQuickPlaySettingsOverlay"]}
+							]
+						}
+						,{
+							"name":"OnlineQuickPlaySettingsOverlay"
+							,"onEnter":
+							[
+								["loadView", ["fluxOverlay", "GameSettingsOverlay"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["fluxOverlay", "GameSettingsOverlay"]]
+							]
+							,"transitions":
+							[
+								{"event":"back", "targets":["OnlineQuickPlayScreenIdle"]}
+							]
+						}
+					]
+				}
+			]
+		}
+		,{
+			"name":"OnlineQuickPlayFlow"
+			,"type":"external"
+			,"file":"/worldcup/CQP/onlineFriendliesFlow.nav"
+			,"inputs":
+			{
+				"onlineQuickPlayPrePlay":"prePlayMatchCheck"
+				,"preCheckWomenWorldCupFriendliesModeInviteAccepted":"preCheckWorldCupFriendliesModeInviteAccepted"
+			}
+			,"outputs":
+			{
+				"BackToMenu":"WorldCupMainMenu"
+				,"BackToTickets":"OnlineQuickPlayMode"
+				,"out_profileSignOut":"profileSignOutWait"
+			}
+		}
+		,{
+			"name":"CQPOnlineFriendliesFlow"
+			,"type":"external"
+			,"file":"/worldcup/CQP/onlineFriendliesFlow.nav"
+			,"inputs":
+			{
+				"onlineFriendliesFlow":"prePlayMatchCheck"
+				,"preCheckWorldCupFriendliesModeInviteAccepted":"preCheckWorldCupFriendliesModeInviteAccepted"
+			}
+			,"outputs":
+			{
+				"BackToMenu":"WorldCupMainMenu"
+				,"BackToTickets":"BackToOnlineFriendliesSelectFixture"
+				,"out_profileSignOut":"profileSignOutWait"
+			}
+		}
+		,{
+			"name": "CQPKickoffModeFlow"
+			,"type": "external"
+			,"file": "/connectedkickoff.nav"
+			,"inputs":
+			{
+				"cqpKickoffFlow":"FromCQPKickOff"
+			}
+			,"outputs": 
+			{
+				"BackToMenu":"BackToKickoffSelectFixture"
+				,"GoToInvite": "invokeInvite"
+			}
+		}
+		,{
+			"name": "invokeInvite" 
+			,"onEnter":
+			[
+				["invoke", ["goToInviteFlow"]]
+			]
+		}
+		,{
+			"name":"WorldCupOnlineTournamentFlow"
+			,"type":"external"
+			,"file":"/online/worldcupOnlineTournament.nav"
+			,"inputs":
+			{
+				"WorldCupOnlineTournament":"WorldCupOnlineTournament"
+			}
+			,"outputs":
+			{
+				"out_back":"WorldCupMainMenu"
+				,"out_goToInviteFlow":"preInviteFlowCheck"
+				,"out_profileSignOut":"profileSignOutWait"
+				,"quitToMainMenu":"BackToMainMenu"
+			}
+		}
+		,{
+			"name":"WorldCupMainMenuFromTournament"
+			,"onEnter":
+			[
+				[ "sendScreenEvent", ["ReloadCareerModeSaves", ""] ]
+			]
+			,"transitions":
+			[
+				{ "event":"success", "targets":["WorldCupMainMenu"] }
+				,{ "event":"fail", "targets":["WorldCupMainMenu"] }
+			]
+		}
+		,{
+			"name":"profileSignOutWait"
+			,"transitions":
+			[
+				{"event":"profileSignOutComplete","targets":["WorldCupSignOutWait"]}
+			]
+		}
+		,{
+			"name":"preInviteFlowCheck"
+			,"onEnter":
+			[
+				["sendAction", ["notify", "onExitWorldCup"]]
+				,["invoke", ["GoToMainFlowCheck"]]
+			]
+			,"transitions":
+			[
+				{"event":"GoToMainFlowCheck","targets":["WorldCupInviteFlowCheck"]}
+			]
+		}
+		,{
+			"name":"SetLeadProfile"
+			,"states":
+			[
+				{
+					"type":"external"
+					,"file":"/performSetLeadProfileFlow.nav"
+					,"outputs":
+					{
+						"out_success":"loginLeadProfileDemoCheck"
+						,"out_fail":"WorldCupMainMenu"
+					}
+				}
+				,{
+					"name":"loginLeadProfileDemoCheck"
+					,"onEnter":
+					[
+						["invoke", ["advance"]]
+					]
+					,"transitions":
+					[
+						{"event":"advance","cond":["==",".FIFA_DEMO",true],"targets":["WorldCupMainMenu"]}
+						,{"event":"advance","targets":["loginLeadProfile"]}
+					]
+				}
+				,{
+					"type":"external"
+					,"file":"/online/onlineLoginFlow.nav"
+					,"inputs":
+					{
+						"loginLeadProfile":"startLoginWithoutMultiplayerCheck"
+					}
+					,"outputs":
+					{
+						"loginSuccess":"WorldCupMainMenu"
+						,"loginFail":"WorldCupMainMenu"
+					}
+				}
+			]
+		}
+		,{
+			"name":"WorldCupOfflineTournamentFlow"
+			,"type":"external"
+			,"file":"/careerMode/tournamentFlow.nav"
+			,"inputs":
+			{
+				"newWomenWorldCupTournamentModeFlow":"NewWomenWorldCupTournamentModeFlow"
+				,"loadWomenWorldCupTournamentModeFlow":"LoadWomenWorldCupTournamentModeFlow"
+				,"continueWomenWorldCupTournamentModeFlow":"ContinueWomenWorldCupTournamentModeFlow"
+				,"newWomenWorldCupTournamentAsPlayerModeFlow":"NewWomenWorldCupTournamentAsPlayerModeFlow"
+				,"loadWomenWorldCupTournamentAsPlayerModeFlow":"LoadWomenWorldCupTournamentAsPlayerModeFlow"
+				,"continueWomenWorldCupTournamentAsPlayerModeFlow":"ContinueWomenWorldCupTournamentAsPlayerModeFlow"
+				,"loadConnectedTournamentModeFlow":"LoadConnectedTournamentModeFlow"
+				,"continueConnectedTournamentModeFlow":"ContinueConnectedTournamentModeFlow"
+				,"connectedTournamentFlow":"ConnectedTournamentFlowInit"				
+			}
+			,"outputs":
+			{
+				"ExitCareerMode":"WorldCupMainMenuFromTournament"
+				,"ExitChampionsLeagueMode":"WorldCupMainMenuFromTournament"
+				,"ExitCopaLibertadoresMode":"WorldCupMainMenuFromTournament"
+				,"ExitWorldCupMode":"WorldCupMainMenuFromTournament"
+				,"ExitWomenWorldCupMode":"WorldCupMainMenuFromTournament"
+				,"ExitTournamentMode":"WorldCupMainMenuFromTournament"
+				,"ExitWomenChampionsLeagueMode":"WorldCupMainMenuFromTournament"
+				,"profileSignOut":"WorldCupSignOutWait"
+				,"out_goToInviteFlow":"preInviteFlowCheck"
+			}
+		}
+		,{
+			"name":"SettingsStates"
+			,"states":
+			[
+				{
+					"let":{"tmMode":"womenWorldCup"}
+					,"states":
+					[
+						{
+							"name":"editTeamManagementFlow"
+							,"type":"external"
+							,"file":"/editTeamManagementFlow.nav"
+							,"outputs":
+							{
+								"back":"WorldCupMainMenu"
+							}
+						}
+					]
+				}
+				,{
+					"name":"credits"
+					,"onEnter":
+					[
+						["loadViewModel",["CreditsViewModel"]]
+					]
+					,"onExit":
+					[
+						["unloadViewModel",["CreditsViewModel"]]
+					]
+					,"states":
+					[
+						{
+							/*Attempt to download the credits file from the content server*/
+							"name": "creditsDownload"
+							,"transitions": 
+							[
+								{
+									/*Once download is complete we can move to the credits screen*/
+									"event": "advance"
+									,"targets": ["creditScreen"]
+								}
+							]
+						},
+						{
+							"name": "creditScreen"
+							,"onEnter":
+							[
+								["loadView",["screen", "game/screens/fluxHub/FluxHub"]]								
+							]
+							,"onExit":
+							[
+								["unloadView",["screen", "game/screens/fluxHub/FluxHub"]]								
+							]
+						}
+					]
+					,"transitions":
+					[
+						{
+							"event":"back"
+							,"targets":["WorldCupMainMenu"]
+						}
+					]
+				}
+				,{
+					"name":"eaTrax"
+					,"onEnter":
+					[
+						["loadViewModel",["EaTraxViewModel", ".TraxView"]] /* TODO: new WC-specific trax mode should be implemented in trax viewmodel and added here instead of ".TraxView" */
+						,["loadView",["screen", "game/screens/fluxHub/FluxHub"]]
+					]
+					,"onExit":
+					[
+						["unloadView",["screen", "game/screens/fluxHub/FluxHub"]]
+						,["unloadViewModel",["EaTraxViewModel"]]
+					]
+					,"states":
+					[
+						{
+							"name":"eaTraxList",
+							"transitions":
+							[
+								{
+									"event":"ConfirmToggleRequested"
+									,"targets":["confirmTogglePopup"]
+								}
+								,{
+									"event":"back"
+									,"targets":["WorldCupMainMenu"]
+								}
+							]
+						}
+						,{
+							"name":"confirmTogglePopup"
+							,"onEnter":
+							[
+								["loadView", ["popup", "ConfirmTogglePopup", "TXT_EA_TRAX_ON_OFF_CONFIRMATION|TXT_YES|popupYes|TXT_NO|popupNo"]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["popup", "ConfirmTogglePopup"]]
+							]
+							,"transitions":
+							[
+								{
+									"event":"popupYes"
+									,"actions":[ ["sendAction", ["updateScreen", "yes"] ] ]
+									,"targets":["eaTraxList"]
+								}
+								,{
+									"event":"popupNo"
+									,"targets":["eaTraxList"]
+								}
+							]
+						}
+					]
+				}
+				,{
+					"name":"helpFlow"
+					,"type":"external"
+					,"file":"/helpFlow.nav"
+					,"inputs":
+					{
+						"HelpBasic":"HelpBasic"
+						,"HelpSkillMoves":"HelpSkillMoves"
+						,"HelpCelebrations":"HelpCelebrations"
+					}
+					,"outputs":
+					{
+						"back":"WorldCupMainMenu"
+					}
+				}
+				,{
+					"name":"settingsFlow"
+					,"type":"external"
+					,"file":"/settingsFlow.nav"
+					,"inputs":
+					{
+						"SettingsGame":"SettingsGame"
+						,"SettingsGameInitialCategoryPreset":"SettingsGameInitialCategoryPreset"
+						,"SettingsController":"SettingsController"
+						,"SettingsVideoBrightness":"SettingsVideoBrightness"
+					}
+					,"outputs":
+					{
+						"back":"WorldCupMainMenu"
+						,"out_notify_controller_disconnect":"WorldCupMainMenu"
+					}
+				}
+				,{
+					"name":"preMatchmakingOptions"
+					,"initial":
+					{
+						"targets":["matchmakingOptionsProfileCheck"]
+					}
+					,"states":
+					[
+						{
+							"name": "DisconnectPopup",
+							"onEnter":
+							[
+								["loadView", ["popup", "DISCONNECT_POPUP", "OSDK_LOST_CON_TO_EA|OK|back"]]
+							],
+							"onExit":
+							[
+								["unloadView", ["popup", "DISCONNECT_POPUP"]]
+							]
+						}
+						,{
+							"name":"matchmakingOptionsProfileCheck"
+							,"type":"external"
+							,"file":"/performProfileCheckFlow.nav"
+							,"outputs":
+							{
+								"success":"startLoginForMatchmakingOptions"
+								,"fail":"WorldCupMainMenu"
+							}
+						}
+						,{
+							"name":"matchmakingOptionsLogin"
+							,"type":"external"
+							,"file":"/online/onlineLoginFlow.nav"
+							,"inputs":
+							{
+								"startLoginForMatchmakingOptions":"startLoginWithoutMultiplayerCheck"
+							}
+							,"outputs":
+							{
+								"loginSuccess":"matchmakingOptions"
+								,"loginFail":"WorldCupMainMenu"
+							}
+						}
+						,{
+							"name":"matchmakingOptions"
+							,"onEnter":
+							[
+								["loadViewModel",["OnlineSettingsScreenViewModel", "isLoadingSWF"]]
+								,["loadView", ["screen", "online/screens/settings/SettingsScreen", "", ""]]
+							]
+							,"onExit":
+							[
+								["unloadView", ["screen", "online/screens/settings/SettingsScreen"]]
+								,["unloadViewModel",["OnlineSettingsScreenViewModel"]]
+							]
+							,"transitions":
+							[
+								{"event": "disconnect", "targets": ["DisconnectPopup"]}
+							]
+						}
+					]
+					,"transitions":
+					[
+						{"event":"back","targets":["WorldCupMainMenu"]}
+					]
+				}
+			]
+		}
+		,{
+			"name":"BackToMainMenu"
+			,"onEnter":
+			[
+				["sendAction", ["notify", "savePersonalFile"]]
+			]
+			,"transitions":
+			[
+				{"event":"success","targets":["BackToMenu"]}
+				,{"event":"fail", "targets":["BackToMenu"]}
+			]
+		}			
+	]	
+}

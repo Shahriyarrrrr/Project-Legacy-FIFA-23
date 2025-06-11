@@ -1,0 +1,229 @@
+[10:21:53.121] [25800] [INFO] Injected
+[10:21:53.121] [25800] [INFO] FIFA 23 Live Editor - v23.1.3.3
+[10:21:53.121] [25800] [INFO] Proc: <FIFA23.exe> BaseAddr: 0x140000000, EndAddr: 0x160EB1000 (Size: 0x20EB1000)
+[10:21:53.122] [25800] [INFO] [Engine::DetectFIFAModManager]
+[10:21:53.122] [25800] [INFO] [Engine::DetectFIFAModManager] "D:\FIFA 23\FIFA23.exe" 
+[10:21:53.122] [25800] [INFO] [Engine::DetectFIFAModManager] Done
+[10:21:53.122] [25800] [INFO] [Localize::LoadLangTrans] D:\FIFA 23\Lang
+[10:21:53.123] [25800] [INFO] Language loaded
+[10:21:53.123] [25800] [INFO] [LEConfig::SetFiles]
+[10:21:53.123] [25800] [INFO] [LEConfig::GetLEDataPathRegVal] SOFTWARE\Live Editor\FIFA 23\Data Dir
+[10:21:53.123] [25800] [INFO] [LEConfig::SetFiles] root_dir C:\FIFA 23 Live Editor
+[10:21:53.124] [25800] [INFO] [LEConfig::SetFiles] Done
+[10:21:53.124] [25800] [INFO] [LEConfig::Load] From C:\FIFA 23 Live Editor\config.json
+[10:21:53.124] [25800] [INFO] [LEConfig::Load] Done
+[10:21:53.124] [25800] [INFO] [Engine::Setup]
+[10:21:53.124] [25800] [INFO] ----------------------------[Context]----------------------------
+[10:21:53.124] [25800] [INFO] Live Editor DLL Path:               D:\FIFA 23
+[10:21:53.124] [25800] [INFO] Game Path:                          D:\FIFA 23
+[10:21:53.124] [25800] [INFO] -----------------------------------------------------------------
+[10:21:53.125] [25800] [INFO] [LE::LUA::ScriptsManager::Init]
+[10:21:53.125] [25800] [INFO] [LEConfig::GetLEDataPathRegVal] SOFTWARE\Live Editor\FIFA 23\Data Dir
+[10:21:53.125] [25800] [INFO] [LE::LUA::ScriptsManager::RunCode] Executing lua script
+[10:21:53.125] [25800] [INFO] [LE::LUA::ScriptsManager::RunCode] Script executed
+[10:21:53.125] [25800] [INFO] [LUA] Init LIVE EDITOR LUA API V1
+[10:21:53.126] [25800] [INFO] [LUA] Init LIVE EDITOR LUA API V2
+[10:21:53.126] [25800] [INFO] [LUA] Load LIVE EDITOR LUA API V2
+[10:21:53.126] [25800] [INFO] [LE::LUA::ScriptsManager::Init] Done
+[10:21:53.179] [25800] [INFO] WAITING FOR WINDOW
+[10:21:57.629] [25800] [INFO] WINDOW Found
+[10:21:57.769] [25800] [INFO] Ok
+[10:21:57.769] [25800] [INFO] [OffsetCache::Check]
+[10:21:57.775] [25800] [INFO] [OffsetCache::Check] Done
+[10:21:57.789] [25800] [INFO] [Engine::SetupMods]
+[10:21:57.790] [25800] [INFO] Create Legacy Structure
+[10:21:57.925] [25800] [INFO] [Engine::SetupMods] Done
+[10:21:57.925] [25800] [INFO] [installCrucialHooks]
+[10:21:57.927] [25800] [INFO] [installCrucialHooks] Done
+[10:21:57.927] [25800] [INFO] [Engine::Setup] Waiting for Press Any Key...
+[10:22:25.998] [25800] [INFO] [Engine::Setup] OK
+[10:22:25.998] [25800] [INFO] -------------------------[PlatformInfo]--------------------------
+[10:22:25.998] [25800] [INFO] OSVersionName:                      Windows 10 Pro Version 2009 (OS Build 19045.5487) 
+[10:22:25.998] [25800] [INFO] processorSpeedMhz:                  3800
+[10:22:25.998] [25800] [INFO] ProcessorIdentifier:                AMD Ryzen 7 7700 8-Core Processor              
+[10:22:25.998] [25800] [INFO] numProcessors:                      16
+[10:22:25.998] [25800] [INFO] memInstalledMb:                     15553
+[10:22:25.998] [25800] [INFO] VideoAdapterId:                     4318.10370
+[10:22:25.998] [25800] [INFO] VideoDriverVersion:                 57260
+[10:22:25.998] [25800] [INFO] VideoDriverVendor:                  Nvidia
+[10:22:25.999] [25800] [INFO] GPUVendor:                          NVIDIA GeForce RTX 4060
+[10:22:25.999] [25800] [INFO] videoMemoryInstalled:               7957
+[10:22:25.999] [25800] [INFO] videoMemorySystem:                  0
+[10:22:25.999] [25800] [INFO] videoMemoryShared:                  7776
+[10:22:25.999] [25800] [INFO] -----------------------------------------------------------------
+[10:22:25.999] [25800] [INFO] ----------------------[Frostbite BuildInfo]----------------------
+[10:22:25.999] [25800] [INFO] BranchName:                         FIFAData
+[10:22:25.999] [25800] [INFO] LicenseeId:                         FIFAGame
+[10:22:25.999] [25800] [INFO] StudioName:                         Frostbite
+[10:22:26.000] [25800] [INFO] Changelist:                         5417699
+[10:22:26.000] [25800] [INFO] SourceChangeList:                   5417699
+[10:22:26.000] [25800] [INFO] FrostbiteChangelist:                12417800
+[10:22:26.000] [25800] [INFO] FrostbiteRelease:                   2021-2.0
+[10:22:26.000] [25800] [INFO] IsAutoBuild:                        false
+[10:22:26.000] [25800] [INFO] Username:                           svc_do019
+[10:22:26.000] [25800] [INFO] BuildTime:                          01:19:39Z
+[10:22:26.000] [25800] [INFO] BuildDate:                          2023-07-05
+[10:22:26.000] [25800] [INFO] BuildIsoDate:                       2023-07-05T01:19:39Z
+[10:22:26.000] [25800] [INFO] -----------------------------------------------------------------
+[10:22:26.000] [25800] [INFO] [installGameHooks]
+[10:22:26.003] [25800] [INFO] [installGameHooks] Done
+[10:22:26.004] [25800] [INFO] [LE::CFSManager::CreateFilesList] start
+[10:22:26.074] [25800] [INFO] [LE::CFSManager::CreateFilesList] done
+[10:22:26.074] [25800] [INFO] [LE::CFSManager::CreateVirtualFileTree]
+[10:22:28.116] [25800] [INFO] [LE::CFSManager::CreateVirtualFileTree] done
+[10:22:28.117] [25800] [INFO] [LE::DatabaseManager::LoadMetaXML] C:\FIFA 23 Live Editor\data\db_meta.xml (from cfs: false)
+[10:22:28.755] [25800] [INFO] [FIFAUtils::LoadCharConvMap] D:\FIFA 23\data\char_conv.json
+[10:22:28.756] [25800] [INFO] [FIFAUtils::LoadCharConvMap] Done
+[10:22:28.756] [25800] [INFO] Hooking DirectX...
+[10:22:28.858] [25800] [INFO] dxgi.dll - found
+[10:22:28.858] [25800] [INFO] d3d12.dll - found
+[10:22:28.858] [25800] [INFO] [d3d12hook::GetOffsets]
+[10:22:28.887] [25800] [INFO] Original bytes for DirectX12 - Present: 48 89 5C 24 10 48 89 74 24 20 55 57 41 56 48 8D 6C 24 90 48 81 
+[10:22:28.887] [25800] [INFO] DirectX12 - Present Addr: 0x7FFB291318C0
+[10:22:28.887] [25800] [INFO] Original bytes for DirectX12 - ResizeBuffers: 48 8B C4 55 41 54 41 55 41 56 41 57 48 8D 68 B1 48 81 EC C0 00 
+[10:22:28.887] [25800] [INFO] DirectX12 - ResizeBuffers Addr: 0x7FFB29152810
+[10:22:28.887] [25800] [INFO] Original bytes for DirectX12 - ResizeBuffers1: 48 8B C4 55 41 54 41 55 41 56 41 57 48 8D 68 C1 48 81 EC C0 00 
+[10:22:28.887] [25800] [INFO] DirectX12 - ResizeBuffers1 Addr: 0x7FFB2919C0D0
+[10:22:28.887] [25800] [INFO] Original bytes for DirectX12 - ExecuteCommandLists: 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 48 83 EC 20 48 
+[10:22:28.887] [25800] [INFO] DirectX12 - ExecuteCommandLists Addr: 0x7FFAE30314A0
+[10:22:28.892] [25800] [INFO] DirectX12 - Creating Present Detour
+[10:22:28.918] [25800] [INFO] DirectX12 - Creating ExecuteCommandLists Detour
+[10:22:28.918] [25800] [INFO] DirectX12 - Creating ResizeBuffers Detour
+[10:22:28.918] [25800] [INFO] DirectX12 - Creating ResizeBuffers1 Detour
+[10:22:28.919] [25800] [INFO] DirectX12 - waiting for initialization
+[10:22:28.936] [42604] [INFO] DirectX12 - Initialize attempt: 1
+[10:22:28.954] [42604] [INFO] dpiScale: 1.0000
+[10:22:29.061] [42604] [INFO] DirectX12 - Present initialized.
+[10:22:29.120] [25800] [INFO] [Engine::Setup] Waiting for main menu...
+[10:22:29.120] [25800] [INFO] [Engine::Setup] Done
+[10:22:29.120] [25800] [INFO] Set Dropdown Options File: C:\FIFA 23 Live Editor\data\id_map.json
+[10:22:29.120] [25800] [INFO] Set Dropdown Update Options File: D:\FIFA 23\data\id_map.json
+[10:22:29.120] [25800] [INFO] Set Dropdown Options from Json File: C:\FIFA 23 Live Editor\data\id_map.json
+[10:22:29.126] [25800] [INFO] Set Dropdown Options from Json File: D:\FIFA 23\data\id_map.json
+[10:22:29.131] [25800] [INFO] Initial setup done
+[10:22:29.171] [42604] [INFO] [LEConfig::Save] To C:\FIFA 23 Live Editor\config.json
+[10:22:29.171] [42604] [INFO] [LEConfig::Save] Done
+[10:22:46.027] [56852] [WARN] [LE::TeamSelectionBiasManager::Load] File not found
+[10:35:53.559] [34156] [WARN] [LE::TeamSelectionBiasManager::Load] File not found
+[10:36:09.234] [56852] [WARN] [LE::TeamSelectionBiasManager::Load] File not found
+[16:15:42.286] [55380] [INFO] Injected
+[16:15:42.287] [55380] [INFO] FIFA 23 Live Editor - v23.1.3.3
+[16:15:42.287] [55380] [INFO] Proc: <FIFA23.exe> BaseAddr: 0x140000000, EndAddr: 0x160EB1000 (Size: 0x20EB1000)
+[16:15:42.287] [55380] [INFO] [Engine::DetectFIFAModManager]
+[16:15:42.287] [55380] [INFO] [Engine::DetectFIFAModManager] "D:\FIFA 23\FIFA23.exe" 
+[16:15:42.287] [55380] [INFO] [Engine::DetectFIFAModManager] Done
+[16:15:42.287] [55380] [INFO] [Localize::LoadLangTrans] D:\FIFA 23\Lang
+[16:15:42.292] [55380] [INFO] Language loaded
+[16:15:42.292] [55380] [INFO] [LEConfig::SetFiles]
+[16:15:42.292] [55380] [INFO] [LEConfig::GetLEDataPathRegVal] SOFTWARE\Live Editor\FIFA 23\Data Dir
+[16:15:42.292] [55380] [INFO] [LEConfig::SetFiles] root_dir C:\FIFA 23 Live Editor
+[16:15:42.296] [55380] [INFO] [LEConfig::SetFiles] Done
+[16:15:42.296] [55380] [INFO] [LEConfig::Load] From C:\FIFA 23 Live Editor\config.json
+[16:15:42.296] [55380] [INFO] [LEConfig::Load] Done
+[16:15:42.299] [55380] [INFO] [Engine::Setup]
+[16:15:42.299] [55380] [INFO] ----------------------------[Context]----------------------------
+[16:15:42.299] [55380] [INFO] Live Editor DLL Path:               D:\FIFA 23
+[16:15:42.300] [55380] [INFO] Game Path:                          D:\FIFA 23
+[16:15:42.300] [55380] [INFO] -----------------------------------------------------------------
+[16:15:42.300] [55380] [INFO] [LE::LUA::ScriptsManager::Init]
+[16:15:42.300] [55380] [INFO] [LEConfig::GetLEDataPathRegVal] SOFTWARE\Live Editor\FIFA 23\Data Dir
+[16:15:42.300] [55380] [INFO] [LE::LUA::ScriptsManager::RunCode] Executing lua script
+[16:15:42.300] [55380] [INFO] [LE::LUA::ScriptsManager::RunCode] Script executed
+[16:15:42.307] [55380] [INFO] [LUA] Init LIVE EDITOR LUA API V1
+[16:15:42.325] [55380] [INFO] [LUA] Init LIVE EDITOR LUA API V2
+[16:15:42.325] [55380] [INFO] [LUA] Load LIVE EDITOR LUA API V2
+[16:15:42.325] [55380] [INFO] [LE::LUA::ScriptsManager::Init] Done
+[16:15:42.418] [55380] [INFO] WAITING FOR WINDOW
+[16:15:46.874] [55380] [INFO] WINDOW Found
+[16:15:46.874] [55380] [INFO] Ok
+[16:15:46.874] [55380] [INFO] [OffsetCache::Check]
+[16:15:46.879] [55380] [INFO] [OffsetCache::Check] Done
+[16:15:46.913] [55380] [INFO] [Engine::SetupMods]
+[16:15:46.926] [55380] [INFO] Create Legacy Structure
+[16:15:47.194] [55380] [INFO] [Engine::SetupMods] Done
+[16:15:47.194] [55380] [INFO] [installCrucialHooks]
+[16:15:47.195] [55380] [INFO] [installCrucialHooks] Done
+[16:15:47.195] [55380] [INFO] [Engine::Setup] Waiting for Press Any Key...
+[16:16:05.992] [55380] [INFO] [Engine::Setup] OK
+[16:16:05.992] [55380] [INFO] -------------------------[PlatformInfo]--------------------------
+[16:16:05.992] [55380] [INFO] OSVersionName:                      Windows 10 Pro Version 2009 (OS Build 19045.5487) 
+[16:16:05.992] [55380] [INFO] processorSpeedMhz:                  3800
+[16:16:05.992] [55380] [INFO] ProcessorIdentifier:                AMD Ryzen 7 7700 8-Core Processor              
+[16:16:05.992] [55380] [INFO] numProcessors:                      16
+[16:16:05.993] [55380] [INFO] memInstalledMb:                     15553
+[16:16:05.993] [55380] [INFO] VideoAdapterId:                     4318.10370
+[16:16:05.993] [55380] [INFO] VideoDriverVersion:                 57260
+[16:16:05.993] [55380] [INFO] VideoDriverVendor:                  Nvidia
+[16:16:05.993] [55380] [INFO] GPUVendor:                          NVIDIA GeForce RTX 4060
+[16:16:05.993] [55380] [INFO] videoMemoryInstalled:               7957
+[16:16:05.993] [55380] [INFO] videoMemorySystem:                  0
+[16:16:05.993] [55380] [INFO] videoMemoryShared:                  7776
+[16:16:05.993] [55380] [INFO] -----------------------------------------------------------------
+[16:16:05.993] [55380] [INFO] ----------------------[Frostbite BuildInfo]----------------------
+[16:16:05.993] [55380] [INFO] BranchName:                         FIFAData
+[16:16:05.993] [55380] [INFO] LicenseeId:                         FIFAGame
+[16:16:05.993] [55380] [INFO] StudioName:                         Frostbite
+[16:16:05.994] [55380] [INFO] Changelist:                         5417699
+[16:16:05.994] [55380] [INFO] SourceChangeList:                   5417699
+[16:16:05.995] [55380] [INFO] FrostbiteChangelist:                12417800
+[16:16:05.995] [55380] [INFO] FrostbiteRelease:                   2021-2.0
+[16:16:05.995] [55380] [INFO] IsAutoBuild:                        false
+[16:16:05.995] [55380] [INFO] Username:                           svc_do019
+[16:16:05.995] [55380] [INFO] BuildTime:                          01:19:39Z
+[16:16:05.995] [55380] [INFO] BuildDate:                          2023-07-05
+[16:16:05.995] [55380] [INFO] BuildIsoDate:                       2023-07-05T01:19:39Z
+[16:16:05.995] [55380] [INFO] -----------------------------------------------------------------
+[16:16:05.995] [55380] [INFO] [installGameHooks]
+[16:16:05.998] [55380] [INFO] [installGameHooks] Done
+[16:16:05.998] [55380] [INFO] [LE::CFSManager::CreateFilesList] start
+[16:16:06.070] [55380] [INFO] [LE::CFSManager::CreateFilesList] done
+[16:16:06.071] [55380] [INFO] [LE::CFSManager::CreateVirtualFileTree]
+[16:16:08.130] [55380] [INFO] [LE::CFSManager::CreateVirtualFileTree] done
+[16:16:08.131] [55380] [INFO] [LE::DatabaseManager::LoadMetaXML] C:\FIFA 23 Live Editor\data\db_meta.xml (from cfs: false)
+[16:16:08.783] [55380] [INFO] [FIFAUtils::LoadCharConvMap] D:\FIFA 23\data\char_conv.json
+[16:16:08.789] [55380] [INFO] [FIFAUtils::LoadCharConvMap] Done
+[16:16:08.790] [55380] [INFO] Hooking DirectX...
+[16:16:08.891] [55380] [INFO] dxgi.dll - found
+[16:16:08.891] [55380] [INFO] d3d12.dll - found
+[16:16:08.891] [55380] [INFO] [d3d12hook::GetOffsets]
+[16:16:08.927] [55380] [INFO] Original bytes for DirectX12 - Present: 48 89 5C 24 10 48 89 74 24 20 55 57 41 56 48 8D 6C 24 90 48 81 
+[16:16:08.927] [55380] [INFO] DirectX12 - Present Addr: 0x7FFB291318C0
+[16:16:08.927] [55380] [INFO] Original bytes for DirectX12 - ResizeBuffers: 48 8B C4 55 41 54 41 55 41 56 41 57 48 8D 68 B1 48 81 EC C0 00 
+[16:16:08.927] [55380] [INFO] DirectX12 - ResizeBuffers Addr: 0x7FFB29152810
+[16:16:08.927] [55380] [INFO] Original bytes for DirectX12 - ResizeBuffers1: 48 8B C4 55 41 54 41 55 41 56 41 57 48 8D 68 C1 48 81 EC C0 00 
+[16:16:08.927] [55380] [INFO] DirectX12 - ResizeBuffers1 Addr: 0x7FFB2919C0D0
+[16:16:08.927] [55380] [INFO] Original bytes for DirectX12 - ExecuteCommandLists: 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 48 83 EC 20 48 
+[16:16:08.927] [55380] [INFO] DirectX12 - ExecuteCommandLists Addr: 0x7FFAC30014A0
+[16:16:08.934] [55380] [INFO] DirectX12 - Creating Present Detour
+[16:16:08.957] [55380] [INFO] DirectX12 - Creating ExecuteCommandLists Detour
+[16:16:08.958] [55380] [INFO] DirectX12 - Creating ResizeBuffers Detour
+[16:16:08.958] [55380] [INFO] DirectX12 - Creating ResizeBuffers1 Detour
+[16:16:08.958] [55380] [INFO] DirectX12 - waiting for initialization
+[16:16:08.991] [52624] [INFO] DirectX12 - Initialize attempt: 1
+[16:16:09.012] [52624] [INFO] dpiScale: 1.0000
+[16:16:09.103] [52624] [INFO] DirectX12 - Present initialized.
+[16:16:09.159] [55380] [INFO] [Engine::Setup] Waiting for main menu...
+[16:16:09.159] [55380] [INFO] [Engine::Setup] Done
+[16:16:09.159] [55380] [INFO] Set Dropdown Options File: C:\FIFA 23 Live Editor\data\id_map.json
+[16:16:09.159] [55380] [INFO] Set Dropdown Update Options File: D:\FIFA 23\data\id_map.json
+[16:16:09.160] [55380] [INFO] Set Dropdown Options from Json File: C:\FIFA 23 Live Editor\data\id_map.json
+[16:16:09.172] [55380] [INFO] Set Dropdown Options from Json File: D:\FIFA 23\data\id_map.json
+[16:16:09.184] [55380] [INFO] Initial setup done
+[16:16:09.243] [52068] [INFO] [LEConfig::Save] To C:\FIFA 23 Live Editor\config.json
+[16:16:09.243] [52068] [INFO] [LEConfig::Save] Done
+[16:16:28.245] [9396] [WARN] [LE::TeamSelectionBiasManager::Load] File not found
+[16:21:09.995] [3976] [INFO] DirectX12 - ResizeBuffers(BufferCount=3, Width=1920, Height=1080, NewFormat=24, SwapChainFlags=66)
+[16:21:10.256] [52692] [INFO] DirectX12 - Initialize attempt: 1
+[16:21:10.293] [52692] [INFO] DirectX12 - Present initialized.
+[16:21:10.297] [52692] [INFO] DirectX12 - ResizeBuffers(BufferCount=3, Width=1920, Height=1061, NewFormat=24, SwapChainFlags=66)
+[16:21:10.308] [52692] [INFO] DirectX12 - ResizeBuffers(BufferCount=3, Width=1920, Height=1061, NewFormat=24, SwapChainFlags=66)
+[16:21:10.666] [52624] [INFO] DirectX12 - Initialize attempt: 1
+[16:21:10.716] [52624] [INFO] DirectX12 - Present initialized.
+[16:21:16.705] [52068] [INFO] DirectX12 - ResizeBuffers(BufferCount=3, Width=1920, Height=1080, NewFormat=24, SwapChainFlags=66)
+[16:21:16.732] [52068] [INFO] DirectX12 - ResizeBuffers(BufferCount=3, Width=1920, Height=1080, NewFormat=24, SwapChainFlags=66)
+[16:21:17.006] [52068] [INFO] DirectX12 - Initialize attempt: 1
+[16:21:17.035] [52068] [INFO] DirectX12 - Present initialized.
+[16:36:48.313] [55888] [WARN] [LE::TeamSelectionBiasManager::Load] File not found
+[16:37:04.822] [55888] [WARN] [LE::TeamSelectionBiasManager::Load] File not found
+[16:37:36.978] [55888] [WARN] [LE::TeamSelectionBiasManager::Load] File not found
+[16:38:56.199] [52312] [WARN] [LE::TeamSelectionBiasManager::Load] File not found

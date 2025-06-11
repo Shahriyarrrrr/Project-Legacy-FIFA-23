@@ -1,0 +1,195 @@
+v23.1.3.3:
+    - Works with Title Update 15
+
+v23.1.3.2:
+    - Fixed problem with distorted chants
+    - Added 100+ accessories to the accessory list in player editor
+
+v23.1.3.1:
+    - Works with Title Update 14.1 
+
+v23.1.3.0:
+    - Restored previous version of the launcher, so the fake EAAC should be copied properly when you run the game via MM
+
+v23.1.2.9:
+    - Works with Title Update 14
+    - Fixed bug causing unability to change directiories in settings
+
+v23.1.2.8:
+    - Added to "Misc Features" -> "Gameplay" -> "Perfect Timed Shot"
+    - Changed the way that Live Editor adds players to teams, this should solve the issue with player not appearing in team after promotion from YA, or transfer.
+    - Fixed game crash caused by created job offer.
+    - Fixed transfer bans not being saved properly.
+
+v23.1.2.7:
+    - Updated LUA from `5.3.4 (32 bit)` to `5.4.6 (x64)`
+    - Locale.ini window is now hidden by default to reduce the false reports about bug with "key file not found"
+    - In settings you can now define where your game is installed (to fix launcher error code 2)
+    - Added: 
+        - "Reveal Player data" in "Misc Features"
+        - "LiveEditorClearRegistry.reg" file to the live editor folder. (it clears windows registry from Live Editor related keys)
+        - Option to generate job offer in manager career mode from any club/national team (you can find it in team editor).
+    - Fixed:
+        - Lacking name of the created club
+        - Players not appearing in their new club after manual transfer
+
+v23.1.2.6:
+    - Works with Title Update 12
+    - Added to Players Editor:
+        - Other -> Team selection bias
+        - Other -> Team selection bias position
+    - Added to Formation Editor:
+        - Offense -> Build Up Play
+        - Offense -> Chance Creation
+        - Freeze Lineup
+    - Removed from Formation Editor:
+        - Offense -> Offensive Style (seems to be no longer in use by FIFA 23)
+    - Live Editor will now update cached formations in career mode when you change formation in Formation Editor.
+
+v23.1.2.5:
+    - Live Editor settings can now also be changed from the launcher.
+    - Added "locale.ini" editor in the launcher.
+    - Added option allowing for player name change in player editor.
+
+v23.1.2.4:
+    - You can now perform search by name or id by clicking "Enter" key, instead of mouse clicking the magnifier icon.
+    - Fixed problems with Live Editor Mods Directory (hopefully for good)
+    - Changed default directory for mods and other LE data from "<YOUR_GAME_INSTALLATION_DIR>\LiveEditorMods" to "C:\FIFA 23 Live Editor"
+    - config.json is now stored in "C:\FIFA 23 Live Editor" instead of the LE folder to keep your settings even if you update the tool.
+
+v23.1.2.3:
+    - Works with Title Update 10
+
+v23.1.2.2:
+    - Fixed game crash that were occurring on slower machines while waiting for game window.
+    - Changed default injection delay to 100ms
+
+v23.1.2.1:
+    - Added "Misc Features" with:
+        - Unsackable
+        - Club Transfer Budget
+    - Added support for file paths containing UTF-16 characters (not fully tested).
+    - Searching players/teams by name will now also match accented characters. (For example "makelele" will match "Makélélé")
+    - Fixed artificialkey field error in "CreatePlayer" lua function
+    - Reduced GPU & Power usage by the launcher.
+
+v23.1.2.0:
+    - It's possible now to define custom score for favourite and disliked teams.
+    - Added advanced filters for players and teams.
+
+v23.1.1.9:
+    - Added to Teams Editor:
+        - Stadium
+        - Kits
+
+v23.1.1.8:
+    - Added Fixtures to Teams Editor (Match-fixing & Rescheduling Games)
+    - Fixed caching offsets, minor game updates shouldn't break the tool forcing you to redownload anymore.
+
+v23.1.1.7:
+    - Added to Teams Editor:
+        - Transfer Bans
+        - Formation Editor
+
+v23.1.1.6:
+    - Works with Title Update 6
+    - Added 2 new traits to players editor, First Time Shots & Round the Keeper (thanks tokke001)
+    - Added Player OVR column in Transfer History list
+
+v23.1.1.5:
+    - Added "Transfer History" with option to undo unwanted transfers.
+
+v23.1.1.4:
+    - Added "Teams" and "Team Editor" with:
+        - Basic info
+        - Players
+        - Manager
+        - Standings
+
+v23.1.1.3:
+    - Added "Season Statistics" to player editor
+
+v23.1.1.2:
+    - Fixed blacksceen issue.
+    - Launcher:
+        - Fixed "Error access denied" (maybe, lol)
+
+v23.1.1.1:
+    - Fixed:
+        - Filtering values in the edit option popup
+    - Launcher:
+        - Fixed auto inject delay
+        - Fixed "Error access denied" when starting the game manually
+
+v23.1.1.0:
+    - Added:
+        - Lua Engine
+    - Fixed:
+        - Editing player jersey number
+
+v23.1.0.9:
+    - Launcher:
+        - Fixed editing injection delay when using auto inject
+        - Increased default injection delay from 300ms to 3000ms
+
+v23.1.0.8:
+    - Works with Title Update 4
+    - UI Changes:
+        - Replaced combo input with searchable input
+    - Fixed:
+        - Crash when loading player that doesn't exists, but have teamplayerlink
+
+v23.1.0.7:
+    - Added:
+        - Option to transfer players
+        - Option to loan players
+        - Option to terminate loan
+    - Fixed:
+        - Adding & Removing players from transfer & loan lists
+
+v23.1.0.6:
+    - Added:
+        - New launcher icon
+        - Option to import miniface
+    - Fixed:
+        - Adding/Removing player injuries
+        - Editing player performance bonus, wage, form & morale
+
+
+v23.1.0.5:
+    - Chants are now disabled by default as workaround for the robotic sound issue. Can be enabled back in Settings->Other.
+    - Added:
+        - Menu Item for reloading Players
+        - Menu Item for reloading Database
+
+v23.1.0.4:
+    - Support for Trial game version
+    - Support for command line arguments
+
+v23.1.0.3:
+    - Launcher improvements:
+        - Adde fake EAAntiCheat launcher. No more installerdata editing, no more clearing cache
+
+v23.1.0.2:
+    - Fixed d-pad input lag
+    - Launcher improvements:
+        - Added option to auto close launcher after dll injection
+        - Added error message if EA Anticheat detected
+        - Added check for non-English characters in live editor & game path
+        - Auto edit installerdata.xml (still requires to clear cache on EA App tho)
+
+v23.1.0.1:
+    - Works with Title Update 2
+    - Added placeholders for missing accessorycolourcodes
+    - Added option to generate minifaces in player editor
+    - Fixed in player editor:
+        - displaying minifaces of youth players 
+        - player role
+        - editing age
+
+
+v23.1.0.0:
+    - Update for FIFA 23 includes:
+        - Legacy File Browser & option to modify them
+        - Database Editor 
+        - Players & Basic Players Editor

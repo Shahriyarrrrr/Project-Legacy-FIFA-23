@@ -1,0 +1,51 @@
+[15:17:23.784] [INFO] [Core::InitDirectories]
+[15:17:23.784] [INFO] [Core::GetLEDataPath]
+[15:17:23.784] [INFO] [Core::GetLEDataPathRegVal] SOFTWARE\Live Editor\FIFA 23\Data Dir
+[15:17:23.784] [INFO] [Core::GetLEDataPath] Found Reg Val: C:\FIFA 23 Live Editor
+[15:17:23.784] [INFO] [core::Config::Setup]
+[15:17:23.785] [INFO] [core::Config::Load] From C:\FIFA 23 Live Editor\config.json
+[15:17:23.785] [INFO] [core::Config::Load] Done
+[15:17:23.785] [INFO] [Core::InitDirectories] Copy legacy_structure.txt to C:\FIFA 23 Live Editor\data\legacy_structure.txt
+[15:17:23.799] [INFO] [Core::InitDirectories] Copy db_meta.xml to C:\FIFA 23 Live Editor\data\db_meta.xml
+[15:17:23.799] [INFO] [Core::InitDirectories] Copy id_map.json to C:\FIFA 23 Live Editor\data\id_map.json
+[15:17:23.803] [INFO] [Core::CreateLegacyFilesStructure]
+[15:17:23.828] [INFO] [Core::CreateLegacyFilesStructure] Done
+[15:17:23.828] [INFO] [core::Config::Save]
+[15:17:23.828] [INFO] [Core::InitDirectories] Done
+[15:17:23.829] [INFO] [Core::Init] Live Editor v23.1.3.3
+[15:17:23.829] [INFO] [Core::Init] Game Install Dir: D:\FIFA 23
+[15:17:23.829] [INFO] [Core::Init] Live Editor Dir: D:\FIFA 23
+[15:17:23.829] [INFO] [Core::ReadGameBuildInfo]
+[15:17:23.830] [INFO] [Core::ReadGameBuildInfo] file path: D:\FIFA 23\Engine.BuildInfo.dll
+[15:17:23.830] [INFO] ----------------------[Frostbite BuildInfo]----------------------
+[15:17:23.830] [INFO] BranchName:                         FIFAData
+[15:17:23.830] [INFO] LicenseeId:                         FIFAGame
+[15:17:23.830] [INFO] StudioName:                         Frostbite
+[15:17:23.830] [INFO] Changelist:                         5417699
+[15:17:23.830] [INFO] SourceChangeList:                   5417699
+[15:17:23.830] [INFO] FrostbiteChangelist:                12417800
+[15:17:23.830] [INFO] FrostbiteRelease:                   2021-2.0
+[15:17:23.830] [INFO] IsAutoBuild:                        false
+[15:17:23.831] [INFO] Username:                           svc_do019
+[15:17:23.831] [INFO] BuildTime:                          01:19:39Z
+[15:17:23.831] [INFO] BuildDate:                          2023-07-05
+[15:17:23.831] [INFO] BuildIsoDate:                       2023-07-05T01:19:39Z
+[15:17:23.831] [INFO] -----------------------------------------------------------------
+[15:17:23.831] [INFO] [Core::ReadGameBuildInfo] Done
+[15:17:23.831] [INFO] [Core::RestoreOrgGameFiles]
+[15:17:23.831] [INFO] [Core::RestoreOrgGameFiles] Done
+[15:17:23.831] [INFO] [Core::BackupOrgGameFiles]
+[15:17:23.835] [INFO] [Core::BackupOrgGameFiles] Done
+[15:17:23.835] [INFO] [Core::CopyFakeEAAC]
+[15:17:23.836] [INFO] [Core::CopyFakeEAAC] Done
+[15:17:23.836] [INFO] [Core::SetupLocalize]
+[15:17:23.836] [INFO] [Localize::LoadLangTrans] D:\FIFA 23\Lang
+[15:17:23.838] [INFO] Language loaded
+[15:17:23.838] [INFO] [Core::SetupLocalize] Done
+[15:17:23.838] [INFO] [Core::GetLEDataPath]
+[15:17:23.838] [INFO] [Core::GetLEDataPathRegVal] SOFTWARE\Live Editor\FIFA 23\Data Dir
+[15:17:23.838] [INFO] [Core::GetLEDataPath] Found Reg Val: C:\FIFA 23 Live Editor
+[15:17:23.838] [INFO] Set Dropdown Options File: C:\FIFA 23 Live Editor\data\id_map.json
+[15:17:23.838] [INFO] Set Dropdown Options from Json File: C:\FIFA 23 Live Editor\data\id_map.json
+[15:17:23.849] [INFO] [Core::Init] Done
+[15:17:30.709] [INFO] Disclaimer Early Exit
